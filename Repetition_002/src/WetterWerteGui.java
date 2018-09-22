@@ -29,38 +29,38 @@ public class WetterWerteGui extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbData = new javax.swing.JLabel();
         plMainDisplay = new javax.swing.JPanel();
         plInput = new javax.swing.JPanel();
         lbTemperature = new javax.swing.JLabel();
         slTemperature = new javax.swing.JSlider();
-        blHumidity = new javax.swing.JLabel();
+        lbHumidity = new javax.swing.JLabel();
         slHumidity = new javax.swing.JSlider();
         btAdd = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        liDisplay = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
         {
-            public void windowActivated(java.awt.event.WindowEvent evt)
-            {
-                onWA(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt)
             {
                 onWinOpened(evt);
             }
         });
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        lbData.setText("  Datei");
+        lbData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(lbData, java.awt.BorderLayout.PAGE_START);
 
         plMainDisplay.setLayout(new java.awt.GridLayout(1, 2));
 
         plInput.setBorder(javax.swing.BorderFactory.createTitledBorder("Eingabe"));
         plInput.setLayout(new java.awt.GridLayout(6, 1));
 
-        lbTemperature.setText("jLabel2");
+        lbTemperature.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        lbTemperature.setText("Temperatur: 10°");
         plInput.add(lbTemperature);
 
         slTemperature.setMaximum(40);
@@ -69,31 +69,49 @@ public class WetterWerteGui extends javax.swing.JFrame
         slTemperature.setPaintTicks(true);
         slTemperature.setToolTipText("1");
         slTemperature.setValue(10);
+        slTemperature.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                onTempChange(evt);
+            }
+        });
         plInput.add(slTemperature);
 
-        blHumidity.setText("jLabel3");
-        plInput.add(blHumidity);
+        lbHumidity.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        lbHumidity.setText("Luftfeuchtigkeit: 50%");
+        plInput.add(lbHumidity);
 
         slHumidity.setPaintLabels(true);
         slHumidity.setPaintTicks(true);
         slHumidity.setToolTipText("");
+        slHumidity.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                onLuftChange(evt);
+            }
+        });
         plInput.add(slHumidity);
 
-        btAdd.setText("jButton1");
+        btAdd.setText("Einfügen");
         plInput.add(btAdd);
 
         plMainDisplay.add(plInput);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Anzeige"));
+
+        liDisplay.setModel(new javax.swing.AbstractListModel<String>()
+        {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(liDisplay);
+
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         plMainDisplay.add(jPanel1);
 
@@ -101,11 +119,6 @@ public class WetterWerteGui extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void onWA(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWA
-    {//GEN-HEADEREND:event_onWA
-
-    }//GEN-LAST:event_onWA
 
     private void onWinOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWinOpened
     {//GEN-HEADEREND:event_onWinOpened
@@ -115,6 +128,16 @@ public class WetterWerteGui extends javax.swing.JFrame
         slHumidity.setMajorTickSpacing(20);
         slHumidity.setMinorTickSpacing(10);
     }//GEN-LAST:event_onWinOpened
+
+    private void onTempChange(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onTempChange
+    {//GEN-HEADEREND:event_onTempChange
+        lbTemperature.setText("Temperatur: "+slTemperature.getValue()+"°");
+    }//GEN-LAST:event_onTempChange
+
+    private void onLuftChange(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onLuftChange
+    {//GEN-HEADEREND:event_onLuftChange
+        lbHumidity.setText("Temperatur: "+slHumidity.getValue()+"°");
+    }//GEN-LAST:event_onLuftChange
 
     public static void main(String args[])
     {
@@ -159,11 +182,13 @@ public class WetterWerteGui extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel blHumidity;
     private javax.swing.JButton btAdd;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbData;
+    private javax.swing.JLabel lbHumidity;
     private javax.swing.JLabel lbTemperature;
+    private javax.swing.JList<String> liDisplay;
     private javax.swing.JPanel plInput;
     private javax.swing.JPanel plMainDisplay;
     private javax.swing.JSlider slHumidity;
