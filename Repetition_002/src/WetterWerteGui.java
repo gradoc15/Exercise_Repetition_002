@@ -42,7 +42,7 @@ public class WetterWerteGui extends javax.swing.JFrame
         lbHumidity = new javax.swing.JLabel();
         slHumidity = new javax.swing.JSlider();
         btAdd = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        plDisplay = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         liDisplay = new javax.swing.JList<>();
 
@@ -71,6 +71,8 @@ public class WetterWerteGui extends javax.swing.JFrame
         jPopupMenu1.add(miClose);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(270, 450));
+        setPreferredSize(new java.awt.Dimension(424, 450));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 onWinOpened(evt);
@@ -128,7 +130,7 @@ public class WetterWerteGui extends javax.swing.JFrame
 
         plMainDisplay.add(plInput);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        plDisplay.setLayout(new java.awt.BorderLayout());
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Anzeige"));
 
@@ -139,9 +141,9 @@ public class WetterWerteGui extends javax.swing.JFrame
         });
         jScrollPane1.setViewportView(liDisplay);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        plDisplay.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        plMainDisplay.add(jPanel1);
+        plMainDisplay.add(plDisplay);
 
         getContentPane().add(plMainDisplay, java.awt.BorderLayout.CENTER);
 
@@ -228,7 +230,6 @@ public class WetterWerteGui extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbData;
@@ -238,6 +239,7 @@ public class WetterWerteGui extends javax.swing.JFrame
     private javax.swing.JMenuItem miClose;
     private javax.swing.JMenuItem miLoad;
     private javax.swing.JMenuItem miSave;
+    private javax.swing.JPanel plDisplay;
     private javax.swing.JPanel plInput;
     private javax.swing.JPanel plMainDisplay;
     private javax.swing.JSlider slHumidity;
