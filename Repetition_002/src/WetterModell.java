@@ -1,10 +1,13 @@
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -76,6 +79,42 @@ public class WetterModell extends AbstractListModel
                 br.close();
             } 
             catch (Exception e) {
+            }
+        }
+    }
+    
+    public void load()
+    {
+        JFileChooser chooser = new JFileChooser();
+        int proof = chooser.showSaveDialog(null);
+        
+        if(proof == JFileChooser.APPROVE_OPTION)
+        {
+            File f = chooser.getSelectedFile();
+            
+            try
+            {
+                BufferedReader br = new BufferedReader(new FileReader(f));
+                
+                String line;
+                while((line = br.readLine()) != null)
+                {
+                    try{
+                    data.add(new WetterWerte(line));
+                    }
+                    catch(Exception ex)
+                    {
+                        System.out.println("Line error");
+                        System.out.println(ex.getMessage());
+                    }
+                   
+                }
+                
+                fireContentsChanged(data, 0, data.size()-1);
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }

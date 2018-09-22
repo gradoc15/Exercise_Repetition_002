@@ -32,6 +32,7 @@ public class WetterWerteGui extends javax.swing.JFrame
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         miSave = new javax.swing.JMenuItem();
+        miLoad = new javax.swing.JMenuItem();
         lbData = new javax.swing.JLabel();
         plMainDisplay = new javax.swing.JPanel();
         plInput = new javax.swing.JPanel();
@@ -51,6 +52,14 @@ public class WetterWerteGui extends javax.swing.JFrame
             }
         });
         jPopupMenu1.add(miSave);
+
+        miLoad.setText("Load");
+        miLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(miLoad);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -158,6 +167,10 @@ public class WetterWerteGui extends javax.swing.JFrame
         bl.save();
     }//GEN-LAST:event_miSaveActionPerformed
 
+    private void miLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadActionPerformed
+       bl.load();
+    }//GEN-LAST:event_miLoadActionPerformed
+
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
@@ -209,6 +222,7 @@ public class WetterWerteGui extends javax.swing.JFrame
     private javax.swing.JLabel lbHumidity;
     private javax.swing.JLabel lbTemperature;
     private javax.swing.JList<String> liDisplay;
+    private javax.swing.JMenuItem miLoad;
     private javax.swing.JMenuItem miSave;
     private javax.swing.JPanel plInput;
     private javax.swing.JPanel plMainDisplay;
