@@ -15,6 +15,13 @@ import javax.swing.AbstractListModel;
 public class WetterModell extends AbstractListModel
 {
     private ArrayList<WetterWerte> data = new ArrayList();
+    
+    public void add(WetterWerte ww)
+    {
+        data.add(ww);
+        fireIntervalAdded(data, data.size()-1, data.size()-1);
+    }
+    
     @Override
     public int getSize()
     {

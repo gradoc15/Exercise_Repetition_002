@@ -17,8 +17,10 @@ public class WetterWerteGui extends javax.swing.JFrame
     public WetterWerteGui()
     {
         initComponents();
+        liDisplay.setModel(bl);
     }
 
+    private WetterModell bl = new WetterModell();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,8 +28,7 @@ public class WetterWerteGui extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lbData = new javax.swing.JLabel();
         plMainDisplay = new javax.swing.JPanel();
@@ -42,10 +43,8 @@ public class WetterWerteGui extends javax.swing.JFrame
         liDisplay = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowOpened(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
                 onWinOpened(evt);
             }
         });
@@ -69,10 +68,8 @@ public class WetterWerteGui extends javax.swing.JFrame
         slTemperature.setPaintTicks(true);
         slTemperature.setToolTipText("1");
         slTemperature.setValue(10);
-        slTemperature.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
+        slTemperature.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 onTempChange(evt);
             }
         });
@@ -85,16 +82,19 @@ public class WetterWerteGui extends javax.swing.JFrame
         slHumidity.setPaintLabels(true);
         slHumidity.setPaintTicks(true);
         slHumidity.setToolTipText("");
-        slHumidity.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
+        slHumidity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 onLuftChange(evt);
             }
         });
         plInput.add(slHumidity);
 
         btAdd.setText("Einfügen");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
         plInput.add(btAdd);
 
         plMainDisplay.add(plInput);
@@ -103,8 +103,7 @@ public class WetterWerteGui extends javax.swing.JFrame
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Anzeige"));
 
-        liDisplay.setModel(new javax.swing.AbstractListModel<String>()
-        {
+        liDisplay.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -138,6 +137,11 @@ public class WetterWerteGui extends javax.swing.JFrame
     {//GEN-HEADEREND:event_onLuftChange
         lbHumidity.setText("Temperatur: "+slHumidity.getValue()+"°");
     }//GEN-LAST:event_onLuftChange
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        bl.add(new WetterWerte(slTemperature.getValue(), slHumidity.getValue()) {
+        });
+    }//GEN-LAST:event_btAddActionPerformed
 
     public static void main(String args[])
     {
