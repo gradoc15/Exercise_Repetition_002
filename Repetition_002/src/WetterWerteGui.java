@@ -30,6 +30,8 @@ public class WetterWerteGui extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        miSave = new javax.swing.JMenuItem();
         lbData = new javax.swing.JLabel();
         plMainDisplay = new javax.swing.JPanel();
         plInput = new javax.swing.JPanel();
@@ -42,6 +44,14 @@ public class WetterWerteGui extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         liDisplay = new javax.swing.JList<>();
 
+        miSave.setText("Speichern");
+        miSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSaveActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(miSave);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -51,6 +61,7 @@ public class WetterWerteGui extends javax.swing.JFrame
 
         lbData.setText("  Datei");
         lbData.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbData.setComponentPopupMenu(jPopupMenu1);
         getContentPane().add(lbData, java.awt.BorderLayout.PAGE_START);
 
         plMainDisplay.setLayout(new java.awt.GridLayout(1, 2));
@@ -143,6 +154,10 @@ public class WetterWerteGui extends javax.swing.JFrame
         });
     }//GEN-LAST:event_btAddActionPerformed
 
+    private void miSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveActionPerformed
+        bl.save();
+    }//GEN-LAST:event_miSaveActionPerformed
+
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
@@ -188,11 +203,13 @@ public class WetterWerteGui extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbData;
     private javax.swing.JLabel lbHumidity;
     private javax.swing.JLabel lbTemperature;
     private javax.swing.JList<String> liDisplay;
+    private javax.swing.JMenuItem miSave;
     private javax.swing.JPanel plInput;
     private javax.swing.JPanel plMainDisplay;
     private javax.swing.JSlider slHumidity;

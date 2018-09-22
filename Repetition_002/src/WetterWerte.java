@@ -52,7 +52,7 @@ public abstract class WetterWerte
     @Override
     public String toString()
     {
-        DateTimeFormatter dtf =  DateTimeFormatter.ofPattern("ee.MM - h:m:s");
+        DateTimeFormatter dtf =  DateTimeFormatter.ofPattern("d.MM - h:m:s");
         return String.format("%s - %d° - %d%s",zeitpunkt.format(dtf),temperatur,luftfeuchtigkeit,"%"); 
     }
 }
